@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FashionHub | Ulgurji Kiyim-Kechak</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f0e8;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --gray: #2a2a2a;
+      --text-muted: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 5%;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 2px;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--white); text-decoration: none;
+      font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 5%;
+      position: relative;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 50%, #0a0a0a 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 60%);
+    }
+    .hero-number {
+      position: absolute; right: 5%; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(8rem, 20vw, 18rem);
+      font-weight: 900; color: rgba(201,168,76,0.06);
+      line-height: 1; user-select: none;
+    }
+    .hero-content { max-width: 700px; z-index: 1; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.4rem 1rem; border-radius: 2px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 900; line-height: 1.05;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      font-size: 1.1rem; color: #aaa; line-height: 1.8;
+      max-width: 500px; margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--black);
+      padding: 0.9rem 2.2rem; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      padding: 0.9rem 2.2rem;
+      border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* STATS */
+    .stats {
+      background: var(--gray);
+      padding: 3rem 5%;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; border-top: 1px solid rgba(201,168,76,0.2);
+    }
+    .stat-item {
+      padding: 2rem; text-align: center;
+      background: var(--gray);
+      animation: fadeUp 0.6s ease both;
+    }
+    .stat-item:nth-child(2) { animation-delay: 0.1s; }
+    .stat-item:nth-child(3) { animation-delay: 0.2s; }
+    .stat-item:nth-child(4) { animation-delay: 0.3s; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 900; color: var(--gold);
+    }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 0.3rem; }
+
+   
+    .products { padding: 6rem 5%; }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-tag {
+      font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; display: block;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700;
+    }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--gray); border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden; transition: transform 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.4); }
+    .product-img {
+      height: 220px;
+      background: linear-gradient(135deg, #1a1a1a, #2d2416);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative; overflow: hidden;
+    }
+    .product-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.5));
+    }
+    .product-info { padding: 1.5rem; }
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; margin-bottom: 0.5rem;
+    }
+    .product-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+    .product-price { color: var(--gold); font-weight: 500; font-size: 1rem; }
+
+   
+    .services {
+      padding: 6rem 5%;
+      background: linear-gradient(180deg, transparent, rgba(201,168,76,0.04), transparent);
+    }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+    .service-card {
+      padding: 2.5rem; border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .service-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+    .service-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--white);
+    }
+    .service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+    
+    .contact { padding: 6rem 5%; }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem;
+    }
+    .contact p { color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; color: #bbb; }
+    .contact-item span:first-child { color: var(--gold); font-size: 1.2rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group input, .form-group textarea {
+      width: 100%; background: var(--gray);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white); padding: 1rem 1.2rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      outline: none; transition: border-color 0.3s;
+      resize: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #555; }
+
+    
+    footer {
+      background: #050505; padding: 3rem 5%;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--gold); font-weight: 900;
+    }
+    footer p { font-size: 0.8rem; color: var(--text-muted); }
+
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .products-grid, .services-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">FashionHub</div>
+  <ul class="nav-links">
+    <li><a href="#products">Mahsulotlar</a></li>
+    <li><a href="#services">Xizmatlar</a></li>
+    <li><a href="#contact">Bog'lanish</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-number">01</div>
+  <div class="hero-content">
+    <span class="hero-tag">Ulgurji Savdo Platformasi</span>
+    <h1>Kiyim-Kechak<br/><span>Sanoatida</span><br/>Yetakchi</h1>
+    <p>ERP, CRM va WMS tizimlari orqali biznesingizni yangi bosqichga olib chiqing. Bulut texnologiyalari bilan kelajakka qadam qo'ying.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Mahsulotlarni Ko'rish</a>
+      <a href="#contact" class="btn-outline">Biz Bilan Bog'laning</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-number">500+</div>
+    <div class="stat-label">Mijozlar</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">50K+</div>
+    <div class="stat-label">Mahsulotlar</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">15+</div>
+    <div class="stat-label">Yillik Tajriba</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">30+</div>
+    <div class="stat-label">Shaharlar</div>
+  </div>
+</div>
+
+<section class="products" id="products">
+  <div class="section-header">
+    <span class="section-tag">Katalog</span>
+    <h2>Asosiy Mahsulotlar</h2>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">👔</div>
+      <div class="product-info">
+        <div class="product-name">Erkaklar Kolleксiyasi</div>
+        <div class="product-desc">Zamonaviy dizayn va yuqori sifatli matolardan tayyorlangan erkaklar kiyimlari.</div>
+        <div class="product-price">Narxni so'rash</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">👗</div>
+      <div class="product-info">
+        <div class="product-name">Ayollar Kolleксiyasi</div>
+        <div class="product-desc">Elegant va zamonaviy uslubdagi ayollar kiyimlari — har bir tadbir uchun.</div>
+        <div class="product-price">Narxni so'rash</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🧒</div>
+      <div class="product-info">
+        <div class="product-name">Bolalar Kolleксiyasi</div>
+        <div class="product-desc">Qulay va chidamli bolalar kiyimlari, xavfsiz materiallardan tayyorlangan.</div>
+        <div class="product-price">Narxni so'rash</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-header">
+    <span class="section-tag">Nima Taklif Etamiz</span>
+    <h2>Biznes Xizmatlarimiz</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <h3>Ombor Boshqaruvi</h3>
+      <p>WMS tizimi orqali ombordagi mahsulotlarni real vaqt rejimida kuzatib boring va boshqaring.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3>Mijozlar Bilan Ishlash</h3>
+      <p>CRM tizimi yordamida har bir mijoz bilan munosabatni professional darajada olib boring.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Biznes Tahlili</h3>
+      <p>ERP tizimi orqali moliyaviy hisobotlar va biznes tahlillarini avtomatik oling.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚚</div>
+      <h3>Yetkazib Berish</h3>
+      <p>30+ shaharga tez va ishonchli yetkazib berish xizmati. Buyurtmangizni kuzatib boring.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔒</div>
+      <h3>Xavfsiz To'lov</h3>
+      <p>Bulut texnologiyalari asosidagi xavfsiz to'lov tizimlari va shifrlangan tranzaksiyalar.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💬</div>
+      <h3>24/7 Qo'llab-Quvvatlash</h3>
+      <p>Har qanday savol va muammolar uchun mutaxassislarimiz doim tayyor.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <span class="section-tag">Aloqa</span>
+      <h2>Biz Bilan<br/>Bog'laning</h2>
+      <p>Ulgurji hamkorlik, narxlar va boshqa savollar bo'yicha mutaxassislarimiz sizga yordam berishga tayyor.</p>
+      <div class="contact-info">
+        <div class="contact-item"><span>📍</span><span>Toshkent, O'zbekiston</span></div>
+        <div class="contact-item"><span>📞</span><span>+998 71 123 45 67</span></div>
+        <div class="contact-item"><span>✉️</span><span>info@fashionhub.uz</span></div>
+        <div class="contact-item"><span>⏰</span><span>Du-Ju: 09:00 - 18:00</span></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <input type="text" placeholder="Ismingiz" />
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email manzilingiz" />
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Kompaniya nomi" />
+      </div>
+      <div class="form-group">
+        <textarea rows="4" placeholder="Xabaringiz..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;padding:1rem;">Yuborish</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">FashionHub</div>
+  <p>© 2026 FashionHub. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+</body>
+</html>
